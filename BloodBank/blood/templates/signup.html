@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2980b9, #2073a1);
+        }
+
+        p {
+            color: #3498db;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <h2>Sign Up</h2>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password1">Password:</label>
+            <input type="password" name="password1" id="password1" required>
+
+            <label for="password2">Confirm Password:</label>
+            <input type="password" name="password2" id="password2" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </div>
+</body>
+</html>

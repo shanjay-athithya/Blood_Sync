@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ patient.name }} Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h2 {
+            color: #e74c3c; /* Red color for heading */
+        }
+
+        table {
+            width: 60%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e74c3c; /* Red header background color */
+            color: #fff; /* White text color */
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9; /* Light gray background on hover */
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            width: 200px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        a.find-matches {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+
+        a.delete-patient {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+
+        a.button:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>{{ patient.name }} Details</h2>
+    <!-- Display patient details in a table -->
+    <table>
+        <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>Blood Group</td>
+            <td>{{ patient.blood_group }}</td>
+        </tr>
+        <tr>
+            <td>Doctor Name</td>
+            <td>{{ patient.doctor_name }}</td>
+        </tr>
+
+        <tr>
+            <td>Hospital Name</td>
+            <td>{{ patient.hospital }}</td>
+        </tr>
+        <tr>
+            <td>Hospital Address</td>
+            <td>{{ patient.hospital.location }}</td>
+        </tr>
+        
+        <tr>
+            <td>District</td>
+            <td>{{ patient.district }}</td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>{{ patient.state }}</td>
+        </tr>
+        <tr>
+            <td>Mobile Number</td>
+            <td>{{ patient.mobile_number }}</td>
+        </tr>
+        <tr>
+            <td>Date When Need</td>
+            <td>{{ patient.date_when_need }}</td>
+        </tr>
+        <tr>
+            <td>Other Description</td>
+            <td>{{ patient.other_description }}</td>
+        </tr>
+    </table>
+
+    <!-- <a href="{% url 'find_match' patient_id=patient.pk %}" class="button find-matches">Find Donor Matches</a> -->
+    <a href="{{ patient.get_edit_url }}" class="button delete-patient">Edit</a>
+    <a href="{% url 'delete_patient' patient.pk %}" class="button delete-patient">Delete Patient</a>
+    <a href="{% url 'patient_list' %}" class="button delete-patient">Back</a>
+</body>
+</html>

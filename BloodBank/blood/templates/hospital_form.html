@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ action }} Hospital</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ff6666;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: top;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: #ff4e50;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid white;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid ;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #ff6666;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #ff4e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #f9d423;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            color: #ff6666;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: white;
+            border: 1px solid #ff6666;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>{{ action }} Hospital</h2>
+    </header>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'hospital_list' %}">Back to List</a>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to enter BloodSync</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('{% static "save.jpg" %}'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            border: 2px solid  #c0392b;
+            background-color: rgba(255, 255, 255, 0.8); /* Dark red background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            max-width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            height: 330px;
+        }
+
+        h2 {
+            color: #c0392b; /* Red heading color */
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #e74c3c; /* Red button color */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        p {
+            color: black; /* Light gray text color */
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        a {
+            color: #e74c3c; /* Red link color */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #c0392b; /* Darker red on hover */
+        }
+
+        label {
+            color: #c0392b; /* Light gray text color for labels */
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left; /* Align labels to the left */
+            display: block; /* Make labels block-level elements */
+        }
+
+        /* Style for input elements */
+        input {
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #c0392b; /* Red border color */
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #e74c3c; /* Red background color */
+            color: #fff; /* White text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h2>Login to enter BloodSync</h2>
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+        </form>
+        
+    </div>
+</body>
+</html>

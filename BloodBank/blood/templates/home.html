@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e74c3c; /* Red background color */
+            text-align: center;
+            color: #fff;
+        }
+
+        header {
+            background-color: #c0392b; /* Darker red header color */
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #fff;
+        }
+
+        div {
+            max-width: 400px;
+            margin: 140px auto;
+            background-color: rgba(231, 76, 60, 0.7); /* Lighter red background color */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .button-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        button, a {
+            width: 220px;
+            margin: 10px;
+            padding: 4px 35px; /* Adjusted padding for increased length and decreased breadth */
+            text-decoration: none;
+            color: #c0392b;
+            background-color: #fff; /* Darker red button color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        button:hover, a:hover {
+            background-color: #a93226; /* Even darker red on hover */
+        }
+
+        h2 {
+            color: #e74c3c; /* Red h2 color */
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a93226; /* Even darker red on hover */
+        }
+
+        /* Set the image as a background image without grayscale filter */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('{% static "blood1.jpg" %}') center/cover no-repeat;
+        }
+
+        blockquote {
+            margin-top: 100px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Light background color for the quote */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+        
+        blockquote p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the BloodSync</h1>
+    </header>
+    <p>Empowering Lives, Saving Futures.</p>
+    <blockquote>
+        <p>"The finest gesture one can make is to save life by donating blood."</p>
+    </blockquote>
+    <div class="button-section">
+        <a href="{% url 'add_patient' %}"><button>Add Patient</button></a>
+        <a href="{% url 'patient_list' %}"><button>Patients</button></a>
+        <a href="{% url 'hospital_list' %}"><button>Hospitals</button></a>
+        <a href="{% url 'donor_list' %}"><button>Donors</button></a>
+        <!--<a href="{% url 'add_donor' %}"><button>Add Donor</button></a>-->
+        <a href="{% url 'add_donation_record' %}"><button>Donation Record</button></a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+
+</html>

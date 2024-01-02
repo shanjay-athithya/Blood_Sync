@@ -1,0 +1,85 @@
+<!-- blood/hospital_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hospital.name }}</title>
+    <style>
+        body {
+            background-color: #ff6666; /* Light red background */
+            color: #ecf0f1; /* Light text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: white; /* Darker red heading color */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 500px; /* Adjusted table width */
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff; /* White background color for the table */
+        }
+
+        th, td {
+            padding: 20px; /* Adjusted padding */
+            text-align: left;
+            border-bottom: 4px solid #ff6666; /* Light gray border color */
+            color: #ff4e50; /* Darker red text color */
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        th {
+            background-color: #ff4e50; /* Darker red background for table header */
+            color: #fff; /* White text color for table header */
+        }
+
+        a {
+            color: #ff4e50; /* Blue link color */
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+            margin-left: 170px;
+            padding: 10px;
+            width: 100px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            background-color: white;
+            border: 2px solid white;
+        }
+
+        a:hover {
+            color: #ff4e50; /* Darker red color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Hospital Name: {{ hospital.name }}</h2>
+        <table>
+            <tr>
+                <th>Location :</th>
+                <td>{{ hospital.location }}</td>
+            </tr>
+            <tr>
+                <th>Contact Information :</th>
+                <td>{{ hospital.contact_information }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'hospital_update' hospital_id=hospital.hospital_id %}">Update</a>
+        <a href="{% url 'hospital_list' %}">Back to List</a>
+    </div>
+</body>
+</html>

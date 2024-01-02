@@ -1,0 +1,97 @@
+<!-- blood_inventory.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Inventory</title>
+    <style>
+        body {
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #e74c3c; /* Red heading color */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 200px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e74c3c; /* Red header background color */
+            color: #fff; /* White text color */
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9; /* Light gray background on hover */
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            background-color: #e74c3c; /* Blue button color */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .back-button a:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Blood Inventory</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Blood Group</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in blood_inventory %}
+                    <tr>
+                        <td>{{ entry.blood_group }}</td>
+                        <td>{{ entry.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="back-button">
+            <a href="{% url 'add_donation_record' %}">Back</a>
+        </div>
+    </div>
+</body>
+</html>

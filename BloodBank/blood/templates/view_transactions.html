@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Transactions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        
+        thead {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .back-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>        
+</head>
+<body>
+    <h2>Blood Transactions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Quantity Taken</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.patient }}</td>
+                    <td>{{ transaction.quantity_taken }}</td>
+                    <td>{{ transaction.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'add_donation_record' %}" class="back-button">Back</a>
+</body>
+</html>

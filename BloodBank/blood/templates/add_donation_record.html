@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Donation Record</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ff6666; /* Light red background */
+            color: #fff; /* White text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            background-color: #e74c3c; /* Red background color */
+            width: 100%;
+            color: #fff;
+            padding: 30px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 300px;
+            margin-top: 70px;
+            width: 100%;
+           
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            color: #333; /* Dark gray text color for labels */
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%; /* Adjusted input and select width to 100% */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e74c3c; /* Red border color */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #e74c3c; /* Red button color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin-top: 10px;
+            margin: 10px
+        }
+
+        button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        a button {
+            background-color: white; /* Blue button color for Blood Inventory */
+            color: #e74c3c; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin-top: 0px; /* Reset margin top */
+            margin-left: 30px;
+            width: 170px;
+            font-weight: bold;
+        }
+
+        a button:hover {
+            background-color: #e74c3c; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Donation Record</h2>
+    <div class="form-container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="post" action="{% url 'add_donation_record' %}">
+            {% csrf_token %}
+            <label for="{{ form.donor.id_for_label }}">Donor:</label>
+            {{ form.donor }}
+            <br>
+
+
+            <label for="{{ form.quantity.id_for_label }}">Quantity:</label>
+            {{ form.quantity }}
+            <br>
+
+            <label for="{{ form.donation_date.id_for_label }}">Donation Date:</label>
+            {{ form.donation_date }}
+            <br>
+
+            <button type="submit">Submit</button>
+        </form>
+        
+    </div>
+    <a href="{% url 'blood_inventory' %}"><button>Blood Inventory</button></a>
+    <a href="{% url 'view_transactions' %}"><button>Blood Transactions</button></a>
+    <a href="{% url 'home' %}"><button>Back to Home</button></a>
+</body>
+</html>

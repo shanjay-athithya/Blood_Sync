@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ff6666; /* Light red background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #fff; /* White text color */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff4d4d; /* Lighter red header color */
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center; /* Center-align hospital names */
+            border-bottom: 1px solid #fff; /* White border color */
+        }
+
+        tr:hover {
+            background-color: #ff4d4d; /* Lighter red hover color */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff; /* White link text color */
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-link,
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: white; /* Lighter red button color */
+            color: #ff4e50; /* Button text color */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-link:hover,
+        .back-link:hover {
+            background-color: #ff3333; /* Hover color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital List</h1>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th><b>Hospital Names</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hospital in hospitals %}
+                <tr>
+                    <td><a href="{% url 'hospital_detail' hospital_id=hospital.hospital_id %}">{{ hospital.name }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="add-link" href="{% url 'hospital_create' %}">Add a new hospital</a>
+    <a class="back-link" href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

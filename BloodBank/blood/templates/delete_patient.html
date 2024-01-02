@@ -1,0 +1,73 @@
+<!-- templates/blood/delete_patient.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Patient</title>
+    <style>
+        body {
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark text color */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h2 {
+            color: #e74c3c; /* Red heading color */
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        button {
+            background-color: #e74c3c; /* Red button color */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        a {
+            color: #3498db; /* Blue link color */
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Delete Patient</h2>
+        <p>Are you sure you want to delete {{ patient.name }}?</p>
+        <form method="post" action="{% url 'delete_patient' patient_id=patient.pk %}">
+            {% csrf_token %}
+            <button type="submit">Yes, delete</button>
+        </form>
+        <a href="{% url 'patient_detail' patient_id=patient.pk %}">Cancel</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Patient</title>
+    <!-- Add any additional head elements here -->
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5; /* Light gray background */
+        color: #333; /* Dark text color */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    
+    h2 {
+        color: #e74c3c; /* Red heading color */
+        margin-bottom: 20px;
+    }
+    
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+    }
+    
+    label {
+        display: block;
+        text-align: left;
+        margin-top: 10px;
+        color: #e74c3c; /* Red label color */
+    }
+    
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 2px solid #e74c3c; /* Red border color */
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    button {
+        background-color: #e74c3c; /* Red button color */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    button:hover {
+        background-color: #c0392b; /* Darker red on hover */
+    }
+    
+    a {
+        color: #e74c3c; /* Red link color */
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
+    
+    a:hover {
+        color: #c0392b; /* Darker red on hover */
+    }
+    </style>    
+</head>
+
+<body>
+  <h2>Edit Patient</h2>
+  <form method="post" action="{% url 'edit_patient' patient.patient_id %}">
+    {% csrf_token %}
+    
+    {{ form.name.label_tag }}
+    {{ form.name }}
+    <br>
+    
+    {{ form.doctor_name.label_tag }}
+    {{ form.doctor_name }}
+    <br>
+
+    {{ form.hospital.label_tag }}
+    {{ form.hospital }}
+    <br>
+
+    {{ form.blood_group.label_tag }}
+    {{ form.blood_group }}
+    <br>
+
+    {{ form.state.label_tag }}
+    {{ form.state }}
+    <br>
+
+    {{ form.district.label_tag }}
+    {{ form.district }}
+    <br>
+
+    {{ form.mobile_number.label_tag }}
+    {{ form.mobile_number }}
+    <br>
+
+    {{ form.date_when_need.label_tag }}
+    {{ form.date_when_need }}
+    <br>
+
+    {{ form.other_description.label_tag }}
+    {{ form.other_description }}
+    <br>
+
+    <button type="submit">Save changes</button>
+  </form>
+  <a href="{% url 'patient_list' %}"><button>Back to patient list</button></a>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!-- add_patient.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+    
+        header {
+            text-align: center;
+            padding: 10px;
+            color: #c0392b;
+            margin-top: 0;
+        }
+    
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            max-width: 100%;
+            width: 400px;
+            text-align: center;
+            border: 2px solid #c0392b;
+        }
+    
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            color: #c0392b;
+        }
+    
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #c0392b;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    
+        input[type="submit"] {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            margin-top: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+    
+        input[type="submit"]:hover {
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+        }
+    
+        ul.messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+    
+        ul.messages li {
+            margin-top: 5px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    
+        .success {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+    
+        .error {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        a.back-button {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            background: white;
+            color: red;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            border: 2px solid #c0392b;
+        }
+
+        a.back-button:hover {
+            background-color: grey; /* Darker blue on hover */
+        }
+    </style>
+    
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Add Patient</h1>
+        </header>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="post" action="{% url 'add_patient' %}">
+            {% csrf_token %}
+
+            <label for="{{ form.name.id_for_label }}">Name:</label>
+            {{ form.name }}
+
+            <label for="{{ form.doctor_name.id_for_label }}">Doctor Name:</label>
+            {{ form.doctor_name }}
+
+            <label for="{{ form.hospital.id_for_label }}">Hospital Name:</label>
+            {{ form.hospital }}
+
+            <label for="{{ form.blood_group.id_for_label }}">Blood Group:</label>
+            {{ form.blood_group }}
+
+            <label for="{{ form.state.id_for_label }}">State:</label>
+            {{ form.state }}
+
+            <label for="{{ form.district.id_for_label }}">District:</label>
+            {{ form.district }}
+
+            <!--<label for="{{ form.hospital_address.id_for_label }}">Hospital Address:</label>
+            {{ form.hospital_address }}-->
+
+            <label for="{{ form.mobile_number.id_for_label }}">Mobile Number:</label>
+            {{ form.mobile_number }}
+
+            <label for="{{ form.date_when_need.id_for_label }}">Date When Need:</label>
+            {{ form.date_when_need }}
+
+            <label for="{{ form.other_description.id_for_label }}">Other Description:</label>
+            {{ form.other_description }}
+
+            <input type="submit" value="Add Patient">
+            <a href="{% url 'home' %}" class="back-button">Back</a>
+        </form>
+        
+    </div>
+    
+</body>
+</html>

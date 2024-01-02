@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor List</title>
+    <style>
+        body {
+            background-color: #ff6666; /* Light red background */
+            color: #fff; /* White text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff4d4d; /* Lighter red header color */
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: white; /* Red heading color */
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center; /* Center-align table content */
+            border-bottom: 1px solid #fff; /* White border color */
+        }
+
+        tr:hover {
+            background-color: #ff4d4d; /* Lighter red hover color */
+        }
+
+        a {
+            background-color: white; /* Light red button color */
+            color: #ff4e50; /* White text color */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #ff3333; /* Darker red on hover */
+        }
+
+        a.back-link {
+            display: block;
+            text-align: center;
+            color: #ff4e50; /* White text color */
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Donor List</h2>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th><b>Name</b></th>
+                <th><b>Blood Group</b></th>
+                <th><b>Contact Information</b></th>
+                <th><b>Last Donation Date</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donor in donors %}
+                <tr>
+                    <td>{{ donor.name }}</td>
+                    <td>{{ donor.blood_group }}</td>
+                    <td>{{ donor.contact_information }}</td>
+                    <td>{{ donor.last_donation_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{% url 'add_donor' %}">Add Donor</a>
+    <a class="back-link" href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

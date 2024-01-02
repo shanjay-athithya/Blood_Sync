@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Match</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 20px;
+            width: 80%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        p {
+            margin-top: 20px;
+            color: #777;
+        }
+        
+        .back-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+        
+        form {
+            margin-top: 20px;
+        }
+        
+        label {
+            margin-right: 10px;
+        }
+        
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+    <div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <h2>Matching Donors for {{ patient.name }} (Blood Group: {{ patient.blood_group }})</h2>
+        
+        {% if matching_donors %}
+            <ul>
+                {% for donor in matching_donors %}
+                    <li>{{ donor.name }} - {{ donor.blood_group }} Contact Info: {{ donor.contact_information }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matching donors found.</p>
+        {% endif %}
+        {% if blood_availability %}
+            <p>Blood Available in blood bank: {{ blood_availability.quantity }} units</p>
+        {% else %}
+            <p>Blood availability information not found.</p>
+        {% endif %}
+        
+        <form method="post" action="{% url 'get_blood' patient.patient_id %}">
+            {% csrf_token %}
+            <label for="quantity">Select Quantity:</label>
+            <input type="number" name="quantity" id="quantity" min="1" required>
+            <button type="submit">Get Blood from Blood Bank</button>
+        </form>
+
+        <a href="{% url 'patient_list' %}" class="back-button">Back</a>
+    
+    </div>
+</body>
+</html>
